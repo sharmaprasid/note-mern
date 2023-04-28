@@ -37,13 +37,9 @@ const authStore = create((set) => ({
   },
   login: async () => {
     const { loginForm } = authStore.getState();
-    const res = await axios.post(
-      "hhttps://note-mern-v1pz.vercel.app/login",
-      loginForm,
-      {
-        withCredentials: true,
-      }
-    );
+    const res = await axios.post("http://localhost:3000/login", loginForm, {
+      withCredentials: true,
+    });
     set({
       loggedIn: true,
       loginForm: {
@@ -54,7 +50,7 @@ const authStore = create((set) => ({
   },
   checkAuth: async () => {
     try {
-      await axios.get("https://note-mern-v1pz.vercel.app/checkauth", {
+      await axios.get("http://localhost:3000/checkauth", {
         withCredentials: true,
       });
       set({
@@ -68,13 +64,9 @@ const authStore = create((set) => ({
   },
   signup: async () => {
     const { SignUpForm } = authStore.getState();
-    const res = await axios.post(
-      "https://note-mern-v1pz.vercel.app/signup",
-      SignUpForm,
-      {
-        withCredentials: true,
-      }
-    );
+    const res = await axios.post("http://localhost:3000/signup", SignUpForm, {
+      withCredentials: true,
+    });
     set({
       SignUpForm: {
         email: "",
@@ -83,7 +75,7 @@ const authStore = create((set) => ({
     });
   },
   logout: async () => {
-    await axios.get("https://note-mern-v1pz.vercel.app/logout", {
+    await axios.get("http://localhost:3000/logout", {
       withCredentials: true,
     });
     set({ loggedIn: false });
