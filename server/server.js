@@ -40,13 +40,5 @@ app.post("/notes", requireAuth, notesController.createNote);
 app.put("/notes/:id", requireAuth, notesController.updateNote);
 app.delete("/notes/:id", requireAuth, notesController.deleteNote);
 
-if (process.env.NODE_ENV == "production") {
-  const path = require("path");
-
-  app.get("/", (req, res) => {
-    app.use(express.static(path.resolve(__dirname, "client", "build")));
-    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
-  });
-}
 // Start our server
-app.listen(process.env.PORT);
+app.listen(process.env.PORT || 3000);

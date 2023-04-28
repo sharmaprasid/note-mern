@@ -37,9 +37,13 @@ const authStore = create((set) => ({
   },
   login: async () => {
     const { loginForm } = authStore.getState();
-    const res = await axios.post("http://localhost:3000/login", loginForm, {
-      withCredentials: true,
-    });
+    const res = await axios.post(
+      "https://note-app-djcu.onrender.com/login",
+      loginForm,
+      {
+        withCredentials: true,
+      }
+    );
     set({
       loggedIn: true,
       loginForm: {
@@ -50,7 +54,7 @@ const authStore = create((set) => ({
   },
   checkAuth: async () => {
     try {
-      await axios.get("http://localhost:3000/checkauth", {
+      await axios.get("https://note-app-djcu.onrender.com/checkauth", {
         withCredentials: true,
       });
       set({
@@ -64,9 +68,13 @@ const authStore = create((set) => ({
   },
   signup: async () => {
     const { SignUpForm } = authStore.getState();
-    const res = await axios.post("http://localhost:3000/signup", SignUpForm, {
-      withCredentials: true,
-    });
+    const res = await axios.post(
+      `https://note-app-djcu.onrender.com/signup`,
+      SignUpForm,
+      {
+        withCredentials: true,
+      }
+    );
     set({
       SignUpForm: {
         email: "",
@@ -75,7 +83,7 @@ const authStore = create((set) => ({
     });
   },
   logout: async () => {
-    await axios.get("http://localhost:3000/logout", {
+    await axios.get(`https://note-app-djcu.onrender.com/logout`, {
       withCredentials: true,
     });
     set({ loggedIn: false });

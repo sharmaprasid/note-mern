@@ -13,7 +13,7 @@ const notesStore = create((set) => ({
     body: "",
   },
   fetchNotes: async () => {
-    const res = await axios.get("http://localhost:3000/notes");
+    const res = await axios.get(`https://note-app-djcu.onrender.com/notes`);
 
     set({
       notes: res.data.notes,
@@ -33,7 +33,10 @@ const notesStore = create((set) => ({
   createNote: async (e) => {
     e.preventDefault();
     const { formvalue, notes } = notesStore.getState();
-    const res = await axios.post("http://localhost:3000/notes", formvalue);
+    const res = await axios.post(
+      `https://note-app-djcu.onrender.com/notes`,
+      formvalue
+    );
     set({
       notes: [...notes, res.data.note],
       formvalue: {
@@ -43,7 +46,9 @@ const notesStore = create((set) => ({
     });
   },
   deletenotes: async (_id) => {
-    const res = await axios.delete(`http://localhost:3000/notes/${_id}`);
+    const res = await axios.delete(
+      `https://note-app-djcu.onrender.com/notes/${_id}`
+    );
     const { notes } = notesStore.getState();
     const NewNotes = notes.filter((note) => {
       return note._id !== _id;
@@ -79,7 +84,7 @@ const notesStore = create((set) => ({
       notes,
     } = notesStore.getState();
 
-    const res = await axios.put(`http://localhost:3000/notes/${_id}`, {
+    const res = await axios.put(`https://note-app-djcu.onrender.com/${_id}`, {
       title,
       body,
     });

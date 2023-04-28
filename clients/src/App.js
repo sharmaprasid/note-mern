@@ -5,10 +5,11 @@ import RequireAuth from "./Components/RequireAuth";
 import SignUpPage from "./pages/SignUpPage";
 import Logoutpage from "./pages/Logoutpage";
 import Home from "./pages/Home";
+import CreateNotes from "./Components/CreateNotes";
 
 function App() {
   return (
-    <div className="App">
+    <div>
       <BrowserRouter>
         <Home />
         <Routes>
@@ -22,6 +23,7 @@ function App() {
           />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUpPage />} />
+          <Route path="/createnotes" element={<CreateNotes />} />
           <Route path="/logout" element={<Logoutpage />} />
         </Routes>
       </BrowserRouter>
