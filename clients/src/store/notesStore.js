@@ -13,7 +13,7 @@ const notesStore = create((set) => ({
     body: "",
   },
   fetchNotes: async () => {
-    const res = await axios.get("https://note-mern-v1pz.vercel.app/notes");
+    const res = await axios.get("http://localhost:3000/notes");
 
     set({
       notes: res.data.notes,
@@ -33,10 +33,7 @@ const notesStore = create((set) => ({
   createNote: async (e) => {
     e.preventDefault();
     const { formvalue, notes } = notesStore.getState();
-    const res = await axios.post(
-      "https://note-mern-v1pz.vercel.app/notes",
-      formvalue
-    );
+    const res = await axios.post("http://localhost:3000/notes", formvalue);
     set({
       notes: [...notes, res.data.note],
       formvalue: {
@@ -46,9 +43,7 @@ const notesStore = create((set) => ({
     });
   },
   deletenotes: async (_id) => {
-    const res = await axios.delete(
-      `https://note-mern-v1pz.vercel.app/notes/${_id}`
-    );
+    const res = await axios.delete(`http://localhost:3000/notes/${_id}`);
     const { notes } = notesStore.getState();
     const NewNotes = notes.filter((note) => {
       return note._id !== _id;
@@ -84,13 +79,10 @@ const notesStore = create((set) => ({
       notes,
     } = notesStore.getState();
 
-    const res = await axios.put(
-      `https://note-mern-v1pz.vercel.app/notes/${_id}`,
-      {
-        title,
-        body,
-      }
-    );
+    const res = await axios.put(`http://localhost:3000/notes/${_id}`, {
+      title,
+      body,
+    });
     const newNotes = [...notes];
     const noteIndex = notes.findIndex((note) => {
       return note._id === _id;
